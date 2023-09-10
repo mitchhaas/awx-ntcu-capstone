@@ -1,0 +1,17 @@
+---
+
+- name: PREPARE INTENDED CONFIGURATIONS
+  hosts: all
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+
+  tasks:
+
+    - name: ENSURE INTENDED DIRECTORY EXISTS
+
+      ansible.builtin.file:
+        path: "{{playbook_dir}}/intended"
+        state: directory
+
+    - ansible.builtin.include_role:
+        name: intended_config

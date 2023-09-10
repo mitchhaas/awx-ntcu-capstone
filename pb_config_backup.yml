@@ -1,0 +1,16 @@
+---
+
+- name: PREPARE BACKUP CONFIGURATIONS
+  hosts: all
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+
+  tasks:
+
+    - name: ENSURE BACKUP DIRECTORY EXISTS
+      ansible.builtin.file:
+        path: "{{playbook_dir}}/backups"
+        state: directory
+
+    - ansible.builtin.include_role:
+        name: backup_config

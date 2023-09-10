@@ -1,0 +1,22 @@
+---
+
+  - name: GENERATE INTENDED CONFIGURATIONS
+    ansible.builtin.template:
+      src: "{{playbook_dir}}/templates/cisco.j2"
+      dest: "{{playbook_dir}}/intended/{{inventory_hostname}}.cfg"
+    when:
+      - ansible_network_os == "nxos" or ansible_network_os == "ios"
+
+  - name: GENERATE INTENDED CONFIGURATIONS
+    ansible.builtin.template:
+      src: "{{playbook_dir}}/templates/juniper.j2"
+      dest: "{{playbook_dir}}/intended/{{inventory_hostname}}.cfg"
+    when:
+      - ansible_network_os == "junos"
+
+  - name: GENERATE INTENDED CONFIGURATIONS
+    ansible.builtin.template:
+      src: "{{playbook_dir}}/templates/arista.j2"
+      dest: "{{playbook_dir}}/intended/{{inventory_hostname}}.cfg"
+    when:
+      - ansible_network_os == "eos"

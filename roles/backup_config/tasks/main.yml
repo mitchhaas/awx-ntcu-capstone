@@ -1,0 +1,40 @@
+---
+- block:
+  - name: GATHER RUNNING CONFIG AND SAVE IN BACKUP DIRECTORY(ios)
+    ansible.builtin.set_fact:
+      config: "{{ lookup('file', playbook_dir + '/mock_backups/' + inventory_hostname + '.cfg') }}"
+  - name: GATHER BACKUP FILES
+    ansible.builtin.copy:
+      content: "{{config}}"
+      dest: "{{playbook_dir}}/backups/{{inventory_hostname}}.cfg"
+  when: ansible_network_os == "ios"
+
+- block:
+  - name: GATHER RUNNING CONFIG AND SAVE IN BACKUP DIRECTORY(eos)
+    ansible.builtin.set_fact:
+      config: "{{ lookup('file', playbook_dir + '/mock_backups/' + inventory_hostname + '.cfg') }}"
+  - name: GATHER BACKUP FILES
+    ansible.builtin.copy:
+      content: "{{config}}"
+      dest: "{{playbook_dir}}/backups/{{inventory_hostname}}.cfg"
+  when: ansible_network_os == "eos"
+
+- block:
+  - name: GATHER RUNNING CONFIG AND SAVE IN BACKUP DIRECTORY(junos)
+    ansible.builtin.set_fact:
+      config: "{{ lookup('file', playbook_dir + '/mock_backups/' + inventory_hostname + '.cfg') }}"
+  - name: GATHER BACKUP FILES
+    ansible.builtin.copy:
+      content: "{{config}}"
+      dest: "{{playbook_dir}}/backups/{{inventory_hostname}}.cfg"
+  when: ansible_network_os == "junos"
+
+# - block:
+#   - name: GATHER RUNNING CONFIG AND SAVE IN BACKUP DIRECTORY(nxos)
+  #   ansible.builtin.set_fact:
+  #     config: "{{ lookup('file', playbook_dir + '/mock_backups/' + inventory_hostname + '.cfg') }}"
+  # - name: GATHER BACKUP FILES
+  #   ansible.builtin.copy:
+  #     content: "{{config}}"
+#       dest: "{{playbook_dir}}/backups/{{inventory_hostname}}.cfg"
+#   when: ansible_network_os == "nxos"

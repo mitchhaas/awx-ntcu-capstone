@@ -1,0 +1,11 @@
+{% for server in ntp_servers %}
+ntp server {{server}}
+{% endfor %}
+
+{% for server in syslog_servers %}
+logging host {{server}}
+{% endfor %}
+
+{% if snmp_community is defined %}
+snmp-community {{snmp_community}}
+{% endif %}

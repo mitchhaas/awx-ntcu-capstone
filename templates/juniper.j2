@@ -1,0 +1,7 @@
+{% for server in ntp_servers %}
+set system ntp server {{server}}
+{% endfor %}
+
+{% for server in syslog_servers %}
+set system syslog host {{server}}
+{% endfor %}
