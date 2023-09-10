@@ -2,7 +2,7 @@
 
 - name: PREPARE INTENDED CONFIGURATIONS
   hosts: all
-  connection: ansible.netcommon.network_cli
+  connection: local
   gather_facts: false
 
   tasks:
